@@ -42,7 +42,7 @@ function startup_reloaded_testimonials() {
 		'has_archive'         => true,
 		'exclude_from_search' => true,
 		'publicly_queryable'  => true,
-		'capability_type'     => 'page'
+		'capability_type'     => 'testimonial'
 	);
 	register_post_type( 'testimonials', $args );
 
