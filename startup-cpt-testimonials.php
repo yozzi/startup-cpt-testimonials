@@ -8,7 +8,6 @@ Version: 0.1 alpha
 
 //CPT
 function startup_reloaded_testimonials() {
-
 	$labels = array(
 		'name'                => _x( 'Testimonials', 'Post Type General Name', 'text_domain' ),
 		'singular_name'       => _x( 'Testimonial', 'Post Type Singular Name', 'text_domain' ),
@@ -46,18 +45,13 @@ function startup_reloaded_testimonials() {
         'map_meta_cap'        => true
 	);
 	register_post_type( 'testimonials', $args );
-
 }
+
 add_action( 'init', 'startup_reloaded_testimonials', 0 );
 
 // Capabilities
-
-register_activation_hook( __FILE__, 'startup_reloaded_testimonials_caps' );
-
-function startup_reloaded_testimonials_caps() {
-	
+function startup_reloaded_testimonials_caps() {	
 	$role_admin = get_role( 'administrator' );
-	
 	$role_admin->add_cap( 'edit_testimonial' );
 	$role_admin->add_cap( 'read_testimonial' );
 	$role_admin->add_cap( 'delete_testimonial' );
@@ -72,4 +66,6 @@ function startup_reloaded_testimonials_caps() {
 	$role_admin->add_cap( 'edit_private_testimonials' );
 	$role_admin->add_cap( 'edit_published_testimonials' );
 }
+
+register_activation_hook( __FILE__, 'startup_reloaded_testimonials_caps' );
 ?>
