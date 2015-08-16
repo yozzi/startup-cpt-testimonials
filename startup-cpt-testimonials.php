@@ -3,7 +3,7 @@
 Plugin Name: StartUp Testimonials Custom Post
 Description: Le plugin pour activer le Custom Post Testimonials
 Author: Yann Caplain
-Version: 0.1 alpha
+Version: 0.1.0
 */
 
 //CPT
