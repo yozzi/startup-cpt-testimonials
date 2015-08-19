@@ -1,10 +1,34 @@
 <?php
 /*
-Plugin Name: StartUp Testimonials Custom Post Type
+Plugin Name: StartUp Testimonials
 Description: Le plugin pour activer le Custom Post Testimonials
 Author: Yann Caplain
-Version: 0.2.0
+Version: 0.3.0
 */
+
+//GitHub Plugin Updater
+function startup_reloaded_testimonials_updater() {
+	include_once 'lib/updater.php';
+	define( 'WP_GITHUB_FORCE_UPDATE', true );
+	if ( is_admin() ) {
+		$config = array(
+			'slug' => plugin_basename( __FILE__ ),
+			'proper_folder_name' => 'startup-cpt-testimonials',
+			'api_url' => 'https://api.github.com/repos/yozzi/startup-cpt-testimonials',
+			'raw_url' => 'https://raw.github.com/yozzi/startup-cpt-testimonials/master',
+			'github_url' => 'https://github.com/yozzi/startup-cpt-testimonials',
+			'zip_url' => 'https://github.com/yozzi/startup-cpt-testimonials/archive/master.zip',
+			'sslverify' => true,
+			'requires' => '3.0',
+			'tested' => '3.3',
+			'readme' => 'README.md',
+			'access_token' => '',
+		);
+		new WP_GitHub_Updater( $config );
+	}
+}
+
+add_action( 'init', 'startup_reloaded_testimonials_updater' );
 
 //CPT
 function startup_reloaded_testimonials() {
