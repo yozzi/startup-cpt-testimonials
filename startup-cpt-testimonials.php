@@ -58,7 +58,7 @@ function startup_reloaded_testimonials() {
 		'show_ui'             => true,
 		'show_in_menu'        => true,
 		'menu_position'       => 5,
-		'menu_icon'           => 'dashicons-megaphone',
+		'menu_icon'           => 'dashicons-format-quote',
 		'show_in_admin_bar'   => false,
 		'show_in_nav_menus'   => false,
 		'can_export'          => true,
