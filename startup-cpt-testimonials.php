@@ -73,7 +73,7 @@ function startup_reloaded_testimonials() {
 
 add_action( 'init', 'startup_reloaded_testimonials', 0 );
 
-//Flusher les permalink à l'activation du plgin pour qu'ils fonctionnent sans mise à jour manuelle
+//Flusher les permalink à l'activation du plugin pour qu'ils fonctionnent sans mise à jour manuelle
 function startup_reloaded_testimonials_rewrite_flush() {
     startup_reloaded_testimonials();
     flush_rewrite_rules();
@@ -100,4 +100,11 @@ function startup_reloaded_testimonials_caps() {
 }
 
 register_activation_hook( __FILE__, 'startup_reloaded_testimonials_caps' );
+
+// Shortcode
+add_shortcode( 'testimonials', function( $atts, $content= null ){
+    ob_start();
+    require get_template_directory() . '/inc/shortcodes/testimonials.php';
+    return ob_get_clean();
+});
 ?>
