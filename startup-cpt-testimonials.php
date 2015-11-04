@@ -1,9 +1,10 @@
 <?php
 /*
-Plugin Name: StartUp Testimonials
+Plugin Name: StartUp CPT Testimonials
 Description: Le plugin pour activer le Custom Post Testimonials
 Author: Yann Caplain
 Version: 1.0.0
+Text Domain: startup-cpt-testimonials
 */
 
 //GitHub Plugin Updater
