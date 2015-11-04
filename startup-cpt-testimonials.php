@@ -104,7 +104,7 @@ register_activation_hook( __FILE__, 'startup_reloaded_testimonials_caps' );
 // Shortcode
 add_shortcode( 'testimonials', function( $atts, $content= null ){
     ob_start();
-    require get_template_directory() . '/inc/shortcodes/testimonials.php';
+    require get_template_directory() . '/template-parts/content-testimonials.php';
     return ob_get_clean();
 });
 ?>
