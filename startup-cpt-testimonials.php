@@ -103,9 +103,17 @@ function startup_reloaded_testimonials_caps() {
 register_activation_hook( __FILE__, 'startup_reloaded_testimonials_caps' );
 
 // Shortcode
-add_shortcode( 'testimonials', function( $atts, $content= null ){
-    ob_start();
-    require get_template_directory() . '/template-parts/content-testimonials.php';
-    return ob_get_clean();
-});
+function startup_reloaded_testimonials_shortcode( $atts ) {
+
+	// Attributes
+    $atts = shortcode_atts(array(
+            'bg' => '#f0f0f0'
+        ), $atts);
+    
+	// Code
+        ob_start();
+        require get_template_directory() . '/template-parts/content-testimonials.php';
+        return ob_get_clean();    
+}
+add_shortcode( 'testimonials', 'startup_reloaded_testimonials_shortcode' );
 ?>
