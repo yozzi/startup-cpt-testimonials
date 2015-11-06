@@ -115,5 +115,24 @@ function startup_reloaded_testimonials_shortcode( $atts ) {
         require get_template_directory() . '/template-parts/content-testimonials.php';
         return ob_get_clean();    
 }
+
 add_shortcode( 'testimonials', 'startup_reloaded_testimonials_shortcode' );
+
+// Add code to footer
+function startup_cpt_testimonials_footer() { ?>
+    <script type="text/javascript">
+        jQuery('#testimonials-carousel').carousel({
+            interval: 0
+        }).on('slide.bs.carousel', function (e){
+            var nextH = jQuery(e.relatedTarget).height();
+            jQuery(this).find('.active.item').parent().animate({ height: nextH }, 500);
+        });
+        
+        jQuery('#testimonials-carousel').on('slid.bs.carousel', function () {
+            jQuery(window).trigger('resize').trigger('scroll');
+        })
+    </script>
+<?php }
+
+add_action( 'wp_footer', 'startup_cpt_testimonials_footer', 100 );
 ?>
