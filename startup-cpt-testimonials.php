@@ -135,4 +135,11 @@ function startup_cpt_testimonials_footer() { ?>
 <?php }
 
 add_action( 'wp_footer', 'startup_cpt_testimonials_footer', 100 );
+
+// Enqueue scripts and styles.
+function startup_cpt_testimonials_scripts() {
+    wp_enqueue_style( 'startup-cpt-testimonials-style', plugins_url( '/css/startup-cpt-testimonials.css', __FILE__ ), array( ), false, 'all' );
+}
+
+add_action( 'wp_enqueue_scripts', 'startup_cpt_testimonials_scripts' );
 ?>
