@@ -29,7 +29,7 @@ function startup_reloaded_testimonials_updater() {
 	}
 }
 
-add_action( 'init', 'startup_reloaded_testimonials_updater' );
+//add_action( 'init', 'startup_reloaded_testimonials_updater' );
 
 //CPT
 function startup_reloaded_testimonials() {
