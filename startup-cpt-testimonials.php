@@ -123,6 +123,45 @@ function startup_reloaded_testimonials_shortcode( $atts ) {
 
 add_shortcode( 'testimonials', 'startup_reloaded_testimonials_shortcode' );
 
+// Shortcode UI
+/**
+ * If Shortcake isn't active, then this demo plugin doesn't work either
+ */
+
+function startup_cpt_testimonials_shortcode_ui_detection() {
+	if ( !function_exists( 'shortcode_ui_register_for_shortcode' ) ) {
+		add_action( 'admin_notices', 'startup_cpt_testimonials_shortcode_ui_notices' );
+	}
+}
+function startup_cpt_testimonials_shortcode_ui_notices() {
+	if ( current_user_can( 'activate_plugins' ) ) {
+		echo '<div class="error message"><p>Shortcode UI plugin must be active for Shortcode UI Example plugin to function.</p></div>';
+	}
+}
+
+add_action( 'init', 'startup_cpt_testimonials_shortcode_ui_detection' );
+
+function startup_cpt_testimonials_shortcode_ui() {
+
+    shortcode_ui_register_for_shortcode(
+        'testimonials',
+        array(
+            'label' => 'Testimonials',
+            'listItemImage' => 'dashicons-format-chat',
+            'attrs' => array(
+                array(
+                    'label' => 'Background',
+                    'attr'  => 'bg',
+                    'type'  => 'color',
+                ),
+            ),
+        )
+    );
+};
+if ( function_exists( 'shortcode_ui_register_for_shortcode' ) ) {
+    add_action( 'init', 'startup_cpt_testimonials_shortcode_ui');
+}
+
 // Add code to footer
 function startup_cpt_testimonials_footer() { ?>
     <script type="text/javascript">
@@ -139,7 +178,7 @@ function startup_cpt_testimonials_footer() { ?>
     </script>
 <?php }
 
-add_action( 'wp_footer', 'startup_cpt_testimonials_footer', 100 );
+add_action( 'wp_footer', 'startup_cpt_testimonials_footer', 15 );
 
 // Enqueue scripts and styles.
 function startup_cpt_testimonials_scripts() {
