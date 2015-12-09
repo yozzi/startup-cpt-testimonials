@@ -152,7 +152,7 @@ function startup_cpt_testimonials_shortcode_ui() {
             'listItemImage' => 'dashicons-format-chat',
             'attrs' => array(
                 array(
-                    'label' => 'Background',
+                    'label' => esc_html__( 'Background', 'startup-cpt-testimonials' ),
                     'attr'  => 'bg',
                     'type'  => 'color',
                 ),
