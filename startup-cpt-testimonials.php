@@ -125,28 +125,30 @@ add_shortcode( 'testimonials', 'startup_reloaded_testimonials_shortcode' );
 
 // Shortcode UI
 /**
- * If Shortcake isn't active, then this demo plugin doesn't work either
+ * Detecion de Shortcake. Identique dans tous les plugins.
  */
+if ( !function_exists( 'shortcode_ui_detection' ) ) {
+    function shortcode_ui_detection() {
+        if ( !function_exists( 'shortcode_ui_register_for_shortcode' ) ) {
+            add_action( 'admin_notices', 'shortcode_ui_notice' );
+        }
+    }
 
-function startup_cpt_testimonials_shortcode_ui_detection() {
-	if ( !function_exists( 'shortcode_ui_register_for_shortcode' ) ) {
-		add_action( 'admin_notices', 'startup_cpt_testimonials_shortcode_ui_notices' );
-	}
-}
-function startup_cpt_testimonials_shortcode_ui_notices() {
-	if ( current_user_can( 'activate_plugins' ) ) {
-		echo '<div class="error message"><p>Shortcode UI plugin must be active for Shortcode UI Example plugin to function.</p></div>';
-	}
-}
+    function shortcode_ui_notice() {
+        if ( current_user_can( 'activate_plugins' ) ) {
+            echo '<div class="error message"><p>Shortcode UI plugin must be active to use fast shortcodes.</p></div>';
+        }
+    }
 
-add_action( 'init', 'startup_cpt_testimonials_shortcode_ui_detection' );
+add_action( 'init', 'shortcode_ui_detection' );
+}
 
 function startup_cpt_testimonials_shortcode_ui() {
 
     shortcode_ui_register_for_shortcode(
         'testimonials',
         array(
-            'label' => 'Testimonials',
+            'label' => esc_html__( 'Testimonials', 'startup-cpt-testimonials' ),
             'listItemImage' => 'dashicons-format-chat',
             'attrs' => array(
                 array(
