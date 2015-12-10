@@ -13,7 +13,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 //GitHub Plugin Updater
-function startup_reloaded_testimonials_updater() {
+function startup_cpt_testimonials_updater() {
 	include_once 'lib/updater.php';
 	//define( 'WP_GITHUB_FORCE_UPDATE', true );
 	if ( is_admin() ) {
@@ -34,10 +34,10 @@ function startup_reloaded_testimonials_updater() {
 	}
 }
 
-//add_action( 'init', 'startup_reloaded_testimonials_updater' );
+//add_action( 'init', 'startup_cpt_testimonials_updater' );
 
 //CPT
-function startup_reloaded_testimonials() {
+function startup_cpt_testimonials() {
 	$labels = array(
 		'name'                => _x( 'Testimonials', 'Post Type General Name', 'startup-cpt-testimonials' ),
 		'singular_name'       => _x( 'Testimonial', 'Post Type Singular Name', 'startup-cpt-testimonials' ),
@@ -77,18 +77,18 @@ function startup_reloaded_testimonials() {
 	register_post_type( 'testimonials', $args );
 }
 
-add_action( 'init', 'startup_reloaded_testimonials', 0 );
+add_action( 'init', 'startup_cpt_testimonials', 0 );
 
 //Flusher les permalink à l'activation du plugin pour qu'ils fonctionnent sans mise à jour manuelle
-function startup_reloaded_testimonials_rewrite_flush() {
-    startup_reloaded_testimonials();
+function startup_cpt_testimonials_rewrite_flush() {
+    startup_cpt_testimonials();
     flush_rewrite_rules();
 }
 
-register_activation_hook( __FILE__, 'startup_reloaded_testimonials_rewrite_flush' );
+register_activation_hook( __FILE__, 'startup_cpt_testimonials_rewrite_flush' );
 
 // Capabilities
-function startup_reloaded_testimonials_caps() {	
+function startup_cpt_testimonials_caps() {	
 	$role_admin = get_role( 'administrator' );
 	$role_admin->add_cap( 'edit_testimonial' );
 	$role_admin->add_cap( 'read_testimonial' );
@@ -105,10 +105,10 @@ function startup_reloaded_testimonials_caps() {
 	$role_admin->add_cap( 'edit_published_testimonials' );
 }
 
-register_activation_hook( __FILE__, 'startup_reloaded_testimonials_caps' );
+register_activation_hook( __FILE__, 'startup_cpt_testimonials_caps' );
 
 // Shortcode
-function startup_reloaded_testimonials_shortcode( $atts ) {
+function startup_cpt_testimonials_shortcode( $atts ) {
 
 	// Attributes
     $atts = shortcode_atts(array(
@@ -121,7 +121,7 @@ function startup_reloaded_testimonials_shortcode( $atts ) {
         return ob_get_clean();    
 }
 
-add_shortcode( 'testimonials', 'startup_reloaded_testimonials_shortcode' );
+add_shortcode( 'testimonials', 'startup_cpt_testimonials_shortcode' );
 
 // Shortcode UI
 /**
