@@ -5,6 +5,7 @@ Description: Le plugin pour activer le Custom Post Testimonials
 Author: Yann Caplain
 Version: 1.0.0
 Text Domain: startup-cpt-testimonials
+Domain Path: /languages
 */
 
 // If this file is called directly, abort.
