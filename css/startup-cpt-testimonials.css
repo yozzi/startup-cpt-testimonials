@@ -3,10 +3,18 @@
 --------------------------------------------------------------*/
 
 #testimonials blockquote {
-    border-left: 5px solid #fff;
+    border-left: 5px solid #ddd;
     margin: 0;
 }
 
 #testimonials .carousel-indicators {
     bottom: -50px;
+}
+
+#testimonials .carousel-indicators .active {
+    background-color: #ccc;
+}
+
+#testimonials .carousel-indicators li {
+    border: 2px solid #ccc;
 }

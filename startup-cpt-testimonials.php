@@ -116,7 +116,7 @@ function startup_cpt_testimonials_shortcode( $atts ) {
 
 	// Attributes
     $atts = shortcode_atts(array(
-            'bg' => '#f0f0f0'
+            'bg' => '#fff'
         ), $atts);
     
 	// Code
