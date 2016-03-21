@@ -120,9 +120,13 @@ function startup_cpt_testimonials_shortcode( $atts ) {
         ), $atts);
     
 	// Code
-        ob_start();
+    ob_start();
+    if ( function_exists( 'startup_reloaded_setup' ) ) {
         require get_template_directory() . '/template-parts/content-testimonials.php';
-        return ob_get_clean();    
+    } else {
+        echo 'Should <a href="https://github.com/yozzi/startup-reloaded" target="_blank">install StartUp Reloaded Theme</a> to make things happen...';
+    }
+    return ob_get_clean();    
 }
 
 add_shortcode( 'testimonials', 'startup_cpt_testimonials_shortcode' );
